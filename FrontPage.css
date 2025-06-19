@@ -1,0 +1,71 @@
+*, *::before, *::after {
+    margin: 0;
+}
+
+.header, ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header {
+    background-color: #dddddd;
+}
+
+li {
+    list-style-type: none;
+    padding: 10px;
+    
+}
+
+h2 {
+    padding: 10px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(0, 194, 0);
+}
+
+table {
+    margin: 20px auto;
+    text-align: center;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.title {
+    text-align: left;
+}
+
+
+.data td {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.tableHeader td {
+    background-color: #dddddd;
+    font-weight: 800;
+}
+
+.hostData img {
+    border: 2px solid rgb(0, 0, 0);
+    width: 200px;
+    height: 200px;
+}
+
+.hostData {
+    background-color: #b6b6b6;
+}
+
+#uiHost {
+    position: absolute;
+    top: 33%;
+    left: 33%;
+}
+
