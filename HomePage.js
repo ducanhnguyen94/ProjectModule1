@@ -87,11 +87,15 @@ function saveHomeHost() {
     newAdmin.home.push(newHome);
 
     localStorage.setItem('Storage', JSON.stringify(newAdmin));
+    localStorage.setItem(newHome.id, JSON.stringify(newHome.id));
+
+    alert('Tên đăng nhặp và mật khẩu của host: ' + newHome.id);
     getAllData(newAdmin);
 };
 
 function getAllData(storage) {
-    let homeData= storage.home;
+    document.getElementById('uiHost').innerHTML = '';
+    let homeData= newAdmin.home;
 
     let html = "";
 
@@ -105,7 +109,8 @@ function getAllData(storage) {
                 <td id="${i}-dayStart">${homeData[i].dayStart}</td>
                 <td>
                     <button onclick="showHostData(${i})">Thông tin chủ</button>                    
-                    <button onclick="EditData(${i})">Chỉnh sửa</button>                    
+                    <button onclick="EditData(${i})">Chỉnh sửa</button>
+                    <button onclick="history(${i})">Lịch sử</button>                     
                     <button onclick="DeleteData(${i})">Xóa</button>
                 </td>
             </tr>
@@ -133,6 +138,7 @@ function getAllData(storage) {
 };
 
 function DeleteData(index) {
+    localStorage.removeItem(newAdmin.home[index].id);
     newAdmin.RemoveData(index);
     localStorage.setItem('Storage', JSON.stringify(newAdmin));
     getAllData(newAdmin);
@@ -249,19 +255,20 @@ function showHostData(index) {
             <tr>
                 <th>Số CCCD: </th>
                 <td>
-                    <input type="text" id="id" value="${newAdmin.host[index].id === true? newAdmin.host[index].id : ""}">
+                    <input type="text" id="id" value="${newAdmin.host[index].id !== ""? newAdmin.host[index].id : ""}">
                 </td>
             </tr>
             <tr>
                 <th>Tạm trú: </th>
                 <td>
-                    <input type="text" id="address" value="${newAdmin.host[index].address === true? newAdmin.host[index].address : ""}">
+                    <input type="text" id="address" value="${newAdmin.host[index].address !== ""? newAdmin.host[index].address : ""}">
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
                     <button onclick="confirmHostChange(${index})">Lưu</button>
-                    <button onclick="getAllData(newAdmin)">Quay về</button>
+                    <button onclick="changeImg()">Thêm Ảnh</button>
+                    <button onclick="getAllData(newAdmin)">Hủy</button>
                 </td>
             </tr>
         </table>
@@ -274,16 +281,56 @@ function confirmHostChange(index) {
     let id = document.getElementById('id').value;
     let address = document.getElementById('address').value;
 
-    newAdmin[index].name = name;
-    newAdmin[index].dob = dob;
-    newAdmin[index].id = id;
-    newAdmin[index].address = address;
+    newAdmin.host[index].name = name;
+    newAdmin.host[index].dob = dob;
+    newAdmin.host[index].id = id;
+    newAdmin.host[index].address = address;
 
     localStorage.setItem('Storage', JSON.stringify(newAdmin));
-    document.getElementById('uiHost').innerHTML = '';
     getAllData(newAdmin);
+};
+
+function logOut() {
+     window.location.replace("http://127.0.0.1:5500/index.html");
+};
+
+function history(index) {
+    let html = "";
+
+    let guestData = newAdmin.home[index].guest;
+
+    for (let i = 0; i < guestData.length; i++) {
+        html += `
+            <tr>
+                <td>${guestData[i].name}</td>
+                <td>${guestData[i].id}</td>
+                <td>${guestData[i].dob}</td>
+                <td>${guestData[i].address}</td>
+                <td>${guestData[i].room}</td>
+                <td>${guestData[i].checkindate}</td>
+                <td>${guestData[i].checkoutdate}</td>
+            </tr>
+        `;
+    };
+
+    uiBody.innerHTML = `
+        <h1 style="text-align: center;">Cơ sở lưu trú ${newAdmin.home[index].homeName}</h1>
+        <table class="historyTable">
+            <tr>
+                <th>Tên Khách</th>
+                <th>Số CCCD</th>
+                <th>Ngày sinh</th>
+                <th>Địa chỉ</th>
+                <th>Phòng</th>
+                <th>Ngày Check In</th>
+                <th>Ngày Check Out</th>
+            </tr>
+            ${html}
+        </table>
+    `;
 }
 
 getAllData(newAdmin);
 
-// localStorage.clear();
+
+

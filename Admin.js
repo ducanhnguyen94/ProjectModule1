@@ -18,14 +18,9 @@ class Admin {
 
 let retrieveData = JSON.parse(localStorage.getItem('Storage'));
 
-
-let Storage = new Admin();
-Storage.home = retrieveData.home;
-Storage.host = retrieveData.host;
-
 let newAdmin = new Admin();
-newAdmin.home = Storage.home;
-newAdmin.host = Storage.host;
+newAdmin.home = retrieveData.home;
+newAdmin.host = retrieveData.host;
 
 // newAdmin.host = retrieveData.host;
 // newAdmin.home = retrieveData.home;
@@ -36,5 +31,4 @@ function checkValidInput(input) {
         return true;
     };
 };
-
 

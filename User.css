@@ -30,42 +30,29 @@ button:hover {
     background-color: rgb(0, 194, 0);
 }
 
-table {
-    margin: 20px auto;
+#userInfo, #homeName {
     text-align: center;
-    border: 1px solid black;
+}
+
+.inputTable {
+    position: absolute;
+    left: 41%;
+    top: 33%;
+    border: 2px solid #dddddd;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.roomInfo {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.roomInfo div {
+    border: 1px solid #dddddd;
     padding: 10px;
     border-radius: 5px;
-}
-
-.title {
-    text-align: left;
-}
-
-.data td {
-    border: 1px solid black;
-    padding: 5px;
-}
-
-.tableHeader td {
-    background-color: #dddddd;
-    font-weight: 800;
-}
-
-.hostData img {
-    border: 2px solid rgb(0, 0, 0);
-    width: 200px;
-    height: 200px;
-}
-
-.hostData {
-    background-color: #b6b6b6;
-}
-
-#uiHost {
-    position: absolute;
-    top: 33%;
-    left: 33%;
 }
 
 .historyTable {

@@ -7,8 +7,10 @@ class Host {
 
     constructor(name) {
         this.name = name;
-    }
+        this.id = "";
+        this.dob = "";
+        this.address = "";
+    };
+};
 
 
-    
-}

@@ -39,9 +39,17 @@ function confirmLogIn() {
 
     if (!confirmPassword || password !== confirmPassword) {
         alert('Tên đăng nhập hoặc mật khẩu không đúng!!!');
+        return;
+    } else if (password !== confirmPassword) {
+        alert('Tên đăng nhập hoặc mật khẩu không đúng!!!');
+        return;
+    };
+
+    if (logIn.includes('admin')) {
+        window.location.replace('http://127.0.0.1:5500/Admin.html');
     } else {
-        window.location.replace("http://127.0.0.1:5500/Admin.html");
+        localStorage.setItem('IDinuse', JSON.stringify(logIn));
+        window.location.replace('http://127.0.0.1:5500/User.html');
     };
 };
-
 
